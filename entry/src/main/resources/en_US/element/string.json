@@ -1,0 +1,8 @@
+{
+  "string": [
+    { "name": "module_desc", "value": "ClashOhos" },
+    { "name": "EntryAbility_desc", "value": "ClashOhos" },
+    { "name": "EntryAbility_label", "value": "ClashOhos" },
+    { "name": "VpnAbility_desc", "value": "ClashOhos VPN extension" }
+  ]
+}

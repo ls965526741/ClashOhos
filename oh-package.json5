@@ -1,0 +1,8 @@
+{
+  "modelVersion": "6.0.0",
+  "description": "ClashOhos — HarmonyOS NEXT client",
+  "license": "GPL-3.0-only",
+  "author": "ClashOhos contributors",
+  "dependencies": {},
+  "devDependencies": {}
+}

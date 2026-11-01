@@ -1,0 +1,4 @@
+# Keep NAPI and VPN identifiers.
+-keep-global-name
+ClashCore
+ClashVpnExtensionAbility

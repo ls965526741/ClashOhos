@@ -1,0 +1,16 @@
+**/oh_modules
+**/.cxx
+**/build
+**/.hvigor
+**/.idea
+**/local.properties
+build-profile.json5
+*.dmp
+.appanalyzer/
+release/*.hap
+release/*.sha256
+entry/libs/**/*.so
+entry/src/main/cpp/prebuilt/**/*.a
+entry/src/main/cpp/prebuilt/**/*.h
+*.hap
+node_modules

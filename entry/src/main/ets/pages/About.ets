@@ -1,0 +1,101 @@
+import { Theme } from '../ui/Theme';
+import { APP_NAME, APP_VERSION_NAME, BUNDLE_NAME, MIHOMO_VERSION, SOURCE_CODE_URL } from '../common/Constants';
+
+@Component
+export struct About {
+  build() {
+    NavDestination() {
+      Scroll() {
+        Column() {
+          Column() {
+            Text(APP_NAME)
+              .fontSize(20)
+              .fontWeight(FontWeight.Medium)
+              .fontColor(Theme.text)
+            Text(APP_VERSION_NAME)
+              .fontSize(14)
+              .fontColor(Theme.muted)
+              .margin({ top: 4 })
+            Text(`核心 mihomo ${MIHOMO_VERSION}`)
+              .fontSize(12)
+              .fontColor(Theme.subtle)
+              .margin({ top: 4 })
+            Text(BUNDLE_NAME)
+              .fontSize(12)
+              .fontColor(Theme.subtle)
+              .margin({ top: 8 })
+          }
+          .width('100%')
+          .padding(20)
+          .alignItems(HorizontalAlign.Start)
+          .backgroundColor(Theme.card)
+          .borderRadius(20)
+
+          Column() {
+            Text('本应用是本地 VPN / 代理客户端，不运营节点，也不把订阅上传到开发者服务器。核心只在 VPN 扩展进程加载。')
+              .fontSize(14)
+              .fontColor(Theme.text)
+              .lineHeight(22)
+            Text('权限')
+              .fontSize(16)
+              .fontColor(Theme.text)
+              .fontWeight(FontWeight.Medium)
+              .margin({ top: 16 })
+            Text('INTERNET：订阅、探测与出站。GET_NETWORK_INFO：网络状态。启停时系统会弹出 VPN 授权。')
+              .fontSize(14)
+              .fontColor(Theme.muted)
+              .margin({ top: 6 })
+              .lineHeight(22)
+            Text('数据')
+              .fontSize(16)
+              .fontColor(Theme.text)
+              .fontWeight(FontWeight.Medium)
+              .margin({ top: 16 })
+            Text('配置与运行状态只写在应用沙箱。默认不自动上传日志。')
+              .fontSize(14)
+              .fontColor(Theme.muted)
+              .margin({ top: 6 })
+              .lineHeight(22)
+            Text('开源许可')
+              .fontSize(16)
+              .fontColor(Theme.text)
+              .fontWeight(FontWeight.Medium)
+              .margin({ top: 16 })
+            Text('上游 Clash Meta for Android / mihomo 为 GPL。分发 HAP 须能提供对应源码。')
+              .fontSize(14)
+              .fontColor(Theme.muted)
+              .margin({ top: 6 })
+              .lineHeight(22)
+            Text('源码仓库')
+              .fontSize(16)
+              .fontColor(Theme.text)
+              .fontWeight(FontWeight.Medium)
+              .margin({ top: 16 })
+            Text(SOURCE_CODE_URL)
+              .fontSize(12)
+              .fontColor(Theme.accent)
+              .margin({ top: 6, bottom: 8 })
+              .lineHeight(20)
+          }
+          .width('100%')
+          .padding(20)
+          .margin({ top: 12, bottom: 24 })
+          .alignItems(HorizontalAlign.Start)
+          .backgroundColor(Theme.card)
+          .borderRadius(20)
+        }
+        .width('100%')
+        .alignItems(HorizontalAlign.Start)
+      }
+      .width('100%')
+      .height('100%')
+      .align(Alignment.TopStart)
+      .scrollBar(BarState.Off)
+      .padding(16)
+      .backgroundColor(Theme.bg)
+    }
+    .title('关于')
+    .hideBackButton(false)
+    .backgroundColor(Theme.bg)
+  }
+}

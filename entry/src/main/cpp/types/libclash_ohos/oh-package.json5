@@ -1,0 +1,6 @@
+{
+  "name": "libclash_ohos.so",
+  "types": "./index.d.ts",
+  "version": "1.0.0",
+  "description": "NAPI shell for Clash.Meta / libclash"
+}
