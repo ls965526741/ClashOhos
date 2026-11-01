@@ -2,7 +2,7 @@
 
 本 HarmonyOS 工程复用 Clash Meta for Android / MetaCubeX mihomo 的 Go 核心思路与导出契约。
 
-- Clash Meta for Android：见仓库根目录 LICENSE（GPL）
+- Clash Meta for Android：见本仓库根目录 `LICENSE`（GPL-3.0）
 - mihomo / Clash.Meta：GPL-3.0，来源 https://github.com/MetaCubeX/mihomo
 - HarmonyOS SDK / Network Kit：华为版权，仅按 SDK 许可使用
 

@@ -13,7 +13,7 @@ export const LOG_DOMAIN = 0x3200;
 export const LOG_TAG = 'ClashOhos';
 export const CONTROLLER_URL = 'http://127.0.0.1:9090';
 /** 发布到 GitHub 后请改为本仓库地址，供「关于」页展示 */
-export const SOURCE_CODE_URL = 'https://github.com/YOUR_USER/YOUR_REPO';
+export const SOURCE_CODE_URL = 'https://github.com/ls965526741/ClashOhos';
 
 export const TUN_ADDRESS = '172.19.0.1';
 export const TUN_PREFIX = 30;
