@@ -1,36 +1,53 @@
 # ClashOhos
 
-HarmonyOS NEXT 上的 **Clash Meta** 图形客户端（非 MetaCubeX 官方产品）。UI 进程不加载 Go；**mihomo** 核心仅在 `VpnExtensionAbility` 中通过 `libclash_core.so` 运行，控制面走本机 REST。
+[![License: GPL-3.0](https://img.shields.io/badge/License-GPL%203.0-blue.svg)](./LICENSE)
+[![Release](https://img.shields.io/github/v/release/ls965526741/ClashOhos?include_prereleases)](https://github.com/ls965526741/ClashOhos/releases)
+[![HarmonyOS NEXT](https://img.shields.io/badge/HarmonyOS-NEXT-red)](https://developer.huawei.com/)
 
-| 项 | 值 |
-|----|-----|
-| 应用名 | ClashOhos |
-| 包名 | `com.clashohos.app` |
-| 版本 | 0.1.0（versionCode 100）；内置核心 mihomo 2.11.36 |
-| 目标系统 | HarmonyOS NEXT，API 6.0.2(22) |
-| 架构 | `arm64-v8a`（真机）、`x86_64`（模拟器） |
+**ClashOhos** 是 HarmonyOS NEXT / 鸿蒙星河版上的 **Clash.Meta（mihomo）图形客户端**：系统 VPN 扩展加载核心，ArkUI 只走本机 REST。不提供节点、不运营机场。非 [MetaCubeX](https://github.com/MetaCubeX) 官方产品。
 
-> **免责声明**：本项目为社区移植，与 [MetaCubeX](https://github.com/MetaCubeX) 无隶属关系。
+**ClashOhos** is an unofficial [Clash.Meta](https://github.com/MetaCubeX/mihomo) / mihomo GUI for **HarmonyOS NEXT**. The Go core runs only inside `VpnExtensionAbility`; the UI talks to `127.0.0.1` REST. GPL-3.0. You bring your own YAML / subscription.
 
-### 修改包名时要改什么？
+| | |
+|--|--|
+| App | ClashOhos |
+| Bundle | `com.clashohos.app` |
+| Version | 0.1.0 (`versionCode` 100) |
+| Core | mihomo 2.11.36 |
+| OS | HarmonyOS NEXT API 6.0.2(22) |
+| ABI | `arm64-v8a` (phone), `x86_64` (emulator) |
+| License | GPL-3.0 |
 
-HarmonyOS 的 **bundleName** 以 `AppScope/app.json5` 为准，代码里通过 `Constants.ets` 的 `BUNDLE_NAME` 启动 VPN 扩展（须与前者一致）。**应用显示名** 用 `APP_NAME`，并与各 `string.json` 里的 `app_name` 等保持一致。
+**关键词 / keywords：** HarmonyOS NEXT、鸿蒙、Clash、Clash Meta、mihomo、VPN、代理客户端、ArkTS、HAP。
 
-| 必改 | 文件 |
-|------|------|
-| 应用显示名 | `Constants.ets` → `APP_NAME`；`AppScope` / `entry` 下 **base、zh_CN、en_US** 的 `string.json` |
-| 应用包名 | `harmony/AppScope/app.json5` → `bundleName`、`vendor` |
-| 运行时 | `Constants.ets` → `BUNDLE_NAME` |
-| 关于 / 标题 | `About.ets`、`Index.ets`（已用 `APP_NAME`） |
-| 文案 | `README.md`、`PRIVACY.md`、`G13-RELEASE.md` 等 |
+- [界面预览](#界面预览)
+- [安装 HAP](#安装侧载-hap)
+- [功能](#功能概览)
+- [从源码构建](#从源码构建)
+- [开源与合规](#开源与合规)
+- [维护者：改包名](#维护者改包名)
 
-**改包名后请你本地额外处理：**
+---
 
-1. **卸载** 旧包名 HAP（否则会与新区并存；数据不迁移）。
-2. **DevEco 签名**：bundleName 变更后，在 DevEco **File → Project Structure → Signing Configs** 重新生成/绑定调试 Profile（`.p7b` 与包名关联），更新本地 `build-profile.json5`（该文件不进 Git）。
-3. **重新编译并安装** HAP；联盟上架时用新包名重新申请 VPN 能力。
+## 界面预览
 
-`module.json5` 里的 Ability 名称（如 `ClashVpnExtensionAbility`）**不必**随包名改，除非你要做对外 deep link。
+真机 HarmonyOS NEXT 截图（应用名显示为桌面图标文案；桌面图标见 `AppScope` 资源）。
+
+| 桌面图标 | 首页（已连接） | 节点与测速 |
+|:---:|:---:|:---:|
+| <img src="images/screenshot-launcher.jpg" width="240" alt="桌面图标 ClashOhos" /> | <img src="images/screenshot-home.jpg" width="240" alt="首页 VPN 已连接与流量" /> | <img src="images/screenshot-proxies.jpg" width="240" alt="节点列表与延迟测速" /> |
+| 桌面入口 | 启停 VPN、上下行流量 | 策略组选节点、批量测速 |
+
+| 订阅 | Unlock 检测 | 设置 |
+|:---:|:---:|:---:|
+| <img src="images/screenshot-profiles.jpg" width="240" alt="订阅导入与激活" /> | <img src="images/screenshot-unlock.jpg" width="240" alt="流媒体解锁检测" /> | <img src="images/screenshot-settings.jpg" width="240" alt="设置列表" /> |
+| URL / 文件导入 YAML | 流媒体与站点连通 | VPN、订阅、Providers、日志 |
+
+<p align="center">
+  <img src="images/screenshot-proxy-mode.jpg" width="280" alt="代理模式：规则 / 全局 / 直连" />
+</p>
+
+<p align="center"><sub>设置 → 代理模式：规则分流、全局代理或全部直连</sub></p>
 
 ---
 
@@ -187,3 +204,21 @@ gh release create v0.1.0 `
 ## 反馈
 
 Issue 请说明：设备型号、HarmonyOS 版本、是否已连接 VPN、hilog 片段（过滤 `ClashOhos` / `libclash`）。
+
+---
+
+## 维护者：改包名
+
+HarmonyOS 的 **bundleName** 以 `AppScope/app.json5` 为准，代码里通过 `Constants.ets` 的 `BUNDLE_NAME` 启动 VPN 扩展（须与前者一致）。**应用显示名** 用 `APP_NAME`，并与各 `string.json` 里的 `app_name` 等保持一致。
+
+| 必改 | 文件 |
+|------|------|
+| 应用显示名 | `Constants.ets` → `APP_NAME`；`AppScope` / `entry` 下 **base、zh_CN、en_US** 的 `string.json` |
+| 应用包名 | `AppScope/app.json5` → `bundleName`、`vendor` |
+| 运行时 | `Constants.ets` → `BUNDLE_NAME` |
+| 关于 / 标题 | `About.ets`、`Index.ets`（已用 `APP_NAME`） |
+| 文案 | `README.md`、`PRIVACY.md`、`G13-RELEASE.md` 等 |
+
+改包名后：卸载旧 HAP；在 DevEco **Signing Configs** 为新包名重新生成 `.p7b`；再编译安装。详见 [`docs/SIGNING.md`](./docs/SIGNING.md)。
+
+`module.json5` 里的 Ability 名称（如 `ClashVpnExtensionAbility`）不必随包名改。

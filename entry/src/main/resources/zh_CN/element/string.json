@@ -1,8 +1,32 @@
 {
   "string": [
-    { "name": "module_desc", "value": "ClashOhos" },
-    { "name": "EntryAbility_desc", "value": "ClashOhos" },
-    { "name": "EntryAbility_label", "value": "ClashOhos" },
-    { "name": "VpnAbility_desc", "value": "ClashOhos VPN 扩展" }
+    {
+      "name": "module_desc",
+      "value": "ClashOhos"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "ClashOhos"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "ClashOhos"
+    },
+    {
+      "name": "VpnAbility_desc",
+      "value": "ClashOhos VPN 扩展"
+    },
+    {
+      "name": "reason_internet",
+      "value": "拉取订阅、健康检查与代理出站"
+    },
+    {
+      "name": "reason_network_info",
+      "value": "显示网络与 VPN 隧道状态"
+    },
+    {
+      "name": "reason_bundle_info",
+      "value": "按应用代理时验证包名"
+    }
   ]
 }
